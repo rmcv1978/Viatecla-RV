@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<!-- 1 Big Photo -->
+<head>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script>
+		$( document ).ready(function() {  	
+	  		$.ajax({
+                url: 'http://dev.scriptor.viatecla.pt/training/REST/contentlistconditional',
+                data: { authentication: 'anonymous', channelPath: '/raiz/repositorio/foto', first: '0', max: '1', fieldlist: '*', sort: 'dte_init,desc'},
+                async: false,
+                dataType: 'json',
+                success: function (responseText) {
+                    var file = responseText.content[0].Foto.ficheiro;
+                    
+
+                    $("#img").attr('src', file);
+                    $("#img-lbl").html(nome);
+                    $("#img-lbl").attr('class', 'yellow');
+        		}
+            });
+		});
+	</script>
+   
+</head>
+<body>
+<div class="container">
+    <div class="row text-center">
+	   <h3 id="img-lbl" class="blue"></h3>
+    </div>
+    <div class="row text-center">
+       <img id="img" class="img-responsive" src=""/>
+    </div>
+</div>
+</body>
+</html>
